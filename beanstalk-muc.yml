@@ -1,0 +1,9 @@
+xmpp:
+  jid: jid@some.server.tld/resource
+  pass: f00
+  muc: muc@conference.some.server.tld/name
+  status: Online
+ 
+beanstalk:
+  server: 127.0.0.1:11300
+  tube: muc
