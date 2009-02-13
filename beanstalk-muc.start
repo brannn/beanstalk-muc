@@ -1,0 +1,13 @@
+#!/bin/sh
+#
+# Daemontools-like script for running the bot.
+
+exec > /tmp/beanstalk-muc.log
+exec 2>&1
+
+while :
+do
+        ruby beanstalk-muc.rb
+        sleep 5
+done
+
