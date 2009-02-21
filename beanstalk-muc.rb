@@ -20,8 +20,14 @@ BEANSTALK = Beanstalk::Pool.new [CONF['beanstalk']['server']]
 BEANSTALK.watch CONF['beanstalk']['tube']
 BEANSTALK.ignore 'default'
 
+TIMEOUT = CONF['beanstalk']['timeout'].to_i
+
 loop do
-  job = BEANSTALK.reserve
+  job = begin
+    BEANSTALK.reserve TIMEOUT
+  rescue Beanstalk::TimedOut
+    nil
+  end
   msg = job.body
   client = Jabber::Client.new(Jabber::JID.new([CONF['xmpp']['jid']])) 
   client.connect

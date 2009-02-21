@@ -6,4 +6,5 @@ xmpp:
  
 beanstalk:
   server: 127.0.0.1:11300
+  timeout: 3600
   tube: muc
